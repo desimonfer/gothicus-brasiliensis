@@ -1,0 +1,310 @@
+<?php
+// admin.php - Painel administrativo
+
+// Verificação de segurança básica (trocar por autenticação real)
+$admin_password = 'sua_senha_super_secreta_aqui'; // ALTERE ISSO!
+
+session_start();
+
+if ($_POST['password'] ?? '' === $admin_password) {
+    $_SESSION['admin'] = true;
+}
+
+if (!($_SESSION['admin'] ?? false)) {
+    ?>
+    <!DOCTYPE html>
+    <html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Admin - Coleta de Emails</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background: #f5f5f5;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                min-height: 100vh;
+                margin: 0;
+            }
+            .login-box {
+                background: white;
+                padding: 40px;
+                border-radius: 8px;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+                width: 300px;
+            }
+            h1 {
+                text-align: center;
+                color: #333;
+                margin-bottom: 30px;
+            }
+            input[type="password"] {
+                width: 100%;
+                padding: 10px;
+                margin-bottom: 20px;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                box-sizing: border-box;
+            }
+            button {
+                width: 100%;
+                padding: 10px;
+                background: #667eea;
+                color: white;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                font-size: 16px;
+            }
+            button:hover {
+                background: #764ba2;
+            }
+            .error {
+                color: #d32f2f;
+                text-align: center;
+                margin-bottom: 20px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="login-box">
+            <h1>🔐 Admin</h1>
+            <?php if ($_POST) echo '<p class="error">Senha incorreta</p>'; ?>
+            <form method="POST">
+                <input type="password" name="password" placeholder="Senha" required autofocus>
+                <button type="submit">Entrar</button>
+            </form>
+        </div>
+    </body>
+    </html>
+    <?php
+    exit;
+}
+
+// Página do admin
+?>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Emails Coletados</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .header {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+        }
+        .logout {
+            background: #d32f2f;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .logout:hover {
+            background: #b71c1c;
+        }
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        .stat-box {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .stat-box h3 {
+            color: #999;
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+        .stat-box .number {
+            font-size: 32px;
+            font-weight: bold;
+            color: #667eea;
+        }
+        table {
+            width: 100%;
+            background: white;
+            border-collapse: collapse;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        th {
+            background: #667eea;
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #eee;
+        }
+        tr:hover {
+            background: #f9f9f9;
+        }
+        .email {
+            color: #667eea;
+        }
+        .actions {
+            display: flex;
+            gap: 10px;
+        }
+        .btn {
+            padding: 5px 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        .btn-delete {
+            background: #d32f2f;
+            color: white;
+        }
+        .btn-delete:hover {
+            background: #b71c1c;
+        }
+        .export-btn {
+            background: #4caf50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+        .export-btn:hover {
+            background: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📊 Painel de Emails</h1>
+            <a href="?logout" class="logout">Sair</a>
+        </div>
+
+        <?php
+        if (isset($_GET['logout'])) {
+            session_destroy();
+            header('Location: admin.php');
+            exit;
+        }
+
+        // Carregar dados
+        $emails = [];
+        if (file_exists('emails.json')) {
+            $emails = json_decode(file_get_contents('emails.json'), true) ?? [];
+        }
+
+        // Deletar email
+        if (isset($_GET['delete'])) {
+            $id = intval($_GET['delete']);
+            array_splice($emails, $id, 1);
+            file_put_contents('emails.json', json_encode($emails, JSON_PRETTY_PRINT));
+            header('Location: admin.php');
+            exit;
+        }
+
+        $total = count($emails);
+        $today = date('Y-m-d');
+        $today_count = count(array_filter($emails, fn($e) => str_starts_with($e['date'], $today)));
+        ?>
+
+        <div class="stats">
+            <div class="stat-box">
+                <h3>Total de Emails</h3>
+                <div class="number"><?php echo $total; ?></div>
+            </div>
+            <div class="stat-box">
+                <h3>Cadastrados Hoje</h3>
+                <div class="number"><?php echo $today_count; ?></div>
+            </div>
+        </div>
+
+        <button class="export-btn" onclick="exportCSV()">📥 Exportar CSV</button>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Email</th>
+                    <th>Nome</th>
+                    <th>Data</th>
+                    <th>IP</th>
+                    <th>Ação</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach (array_reverse($emails) as $index => $entry): 
+                    $real_index = count($emails) - $index - 1;
+                ?>
+                <tr>
+                    <td class="email"><?php echo htmlspecialchars($entry['email']); ?></td>
+                    <td><?php echo htmlspecialchars($entry['name']); ?></td>
+                    <td><?php echo $entry['date']; ?></td>
+                    <td><?php echo htmlspecialchars($entry['ip']); ?></td>
+                    <td class="actions">
+                        <a href="?delete=<?php echo $real_index; ?>" class="btn btn-delete" onclick="return confirm('Tem certeza?')">Deletar</a>
+                    </td>
+                </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+
+        <?php if ($total === 0): ?>
+        <p style="text-align: center; color: #999; margin-top: 40px;">Nenhum email cadastrado ainda.</p>
+        <?php endif; ?>
+    </div>
+
+    <script>
+        function exportCSV() {
+            const emails = <?php echo json_encode($emails); ?>;
+            let csv = 'Email,Nome,Data,IP\n';
+            
+            emails.forEach(entry => {
+                csv += `"${entry.email}","${entry.name}","${entry.date}","${entry.ip}"\n`;
+            });
+
+            const blob = new Blob([csv], { type: 'text/csv' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `emails_${new Date().toISOString().split('T')[0]}.csv`;
+            a.click();
+        }
+    </script>
+</body>
+</html>
