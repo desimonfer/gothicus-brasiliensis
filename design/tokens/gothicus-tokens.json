@@ -1,0 +1,411 @@
+{
+  "global": {
+    "color": {
+      "green": {
+        "value": "#7ecba1",
+        "type": "color",
+        "description": "Cor principal — links, labels, destaques"
+      },
+      "purple": {
+        "value": "#c084fc",
+        "type": "color",
+        "description": "Acento secundário — despachos, pull quote variante"
+      },
+      "cream": {
+        "value": "#e8e0d0",
+        "type": "color",
+        "description": "Texto principal"
+      },
+      "dim": {
+        "value": "#b8a898",
+        "type": "color",
+        "description": "Tagline, texto secundário"
+      },
+      "mute": {
+        "value": "#9a9080",
+        "type": "color",
+        "description": "Corpo dos cards"
+      },
+      "faint": {
+        "value": "#6b5f4f",
+        "type": "color",
+        "description": "Entrada desc, footer invite"
+      },
+      "bg": {
+        "value": "#0a0f0a",
+        "type": "color",
+        "description": "Fundo global"
+      },
+      "border": {
+        "value": "#1a2e1a",
+        "type": "color",
+        "description": "Bordas dos grids e cards"
+      },
+      "nav-subtle": {
+        "value": "#4a6b4a",
+        "type": "color",
+        "description": "Scroll hint, separadores nav, footer sub"
+      },
+      "entrada-num": {
+        "value": "#3a5a3a",
+        "type": "color",
+        "description": "Numeração das entradas"
+      },
+      "card-hover": {
+        "value": "#111a11",
+        "type": "color",
+        "description": "Fundo dos cards no hover"
+      },
+      "entrada": {
+        "bestiario": {
+          "value": "#7ecba1",
+          "type": "color"
+        },
+        "mapa": {
+          "value": "#e8c547",
+          "type": "color"
+        },
+        "mapa-arrow": {
+          "value": "#a89030",
+          "type": "color"
+        },
+        "cartas": {
+          "value": "#e85d26",
+          "type": "color"
+        },
+        "cartas-arrow": {
+          "value": "#a03a10",
+          "type": "color"
+        },
+        "oraculo": {
+          "value": "#9ad6f1",
+          "type": "color"
+        },
+        "oraculo-arrow": {
+          "value": "#4a8aaa",
+          "type": "color"
+        },
+        "despachos": {
+          "value": "#c084fc",
+          "type": "color"
+        },
+        "despachos-arrow": {
+          "value": "#7a4f9a",
+          "type": "color"
+        }
+      }
+    },
+    "spacing": {
+      "section-y": {
+        "value": "64",
+        "type": "spacing",
+        "description": "Padding vertical das seções (4rem @ 16px base)"
+      },
+      "hero-top": {
+        "value": "96",
+        "type": "spacing",
+        "description": "Padding top do hero (6rem)"
+      },
+      "hero-bottom": {
+        "value": "48",
+        "type": "spacing",
+        "description": "Padding bottom do hero (3rem)"
+      },
+      "content-x": {
+        "value": "32",
+        "type": "spacing",
+        "description": "Padding horizontal das seções (2rem)"
+      },
+      "nav-y": {
+        "value": "24",
+        "type": "spacing",
+        "description": "Padding vertical do nav (1.5rem)"
+      },
+      "nav-x": {
+        "value": "64",
+        "type": "spacing",
+        "description": "Padding horizontal do nav (4rem)"
+      },
+      "card-pad": {
+        "value": "32",
+        "type": "spacing",
+        "description": "Padding interno dos cards (2rem)"
+      },
+      "card-pad-entrada": {
+        "value": "29",
+        "type": "spacing",
+        "description": "Padding horizontal dos cards de entrada (1.8rem)"
+      },
+      "pull-y": {
+        "value": "48",
+        "type": "spacing",
+        "description": "Margem vertical dos pull quotes (3rem)"
+      },
+      "label-bottom": {
+        "value": "32",
+        "type": "spacing",
+        "description": "Margin-bottom do section label (2rem)"
+      },
+      "grid-gap": {
+        "value": "0",
+        "type": "spacing",
+        "description": "Gap dos grids — separação via border"
+      }
+    },
+    "sizing": {
+      "content-max": {
+        "value": "720",
+        "type": "sizing",
+        "description": "Max-width do conteúdo principal"
+      },
+      "hero-min-height": {
+        "value": "80vh",
+        "type": "sizing",
+        "description": "Altura mínima do hero"
+      },
+      "pull-border": {
+        "value": "2",
+        "type": "sizing",
+        "description": "Espessura da borda dos pull quotes"
+      },
+      "border-width": {
+        "value": "1",
+        "type": "sizing",
+        "description": "Espessura das bordas dos cards e grids"
+      }
+    },
+    "typography": {
+      "hero-title": {
+        "value": {
+          "fontFamily": "Brasilero",
+          "fontWeight": "Regular",
+          "fontSize": "128",
+          "lineHeight": "0.93",
+          "letterSpacing": "-2%",
+          "textCase": "none"
+        },
+        "type": "typography",
+        "description": "Título principal do hero. clamp(3.5rem, 10vw, 8rem)"
+      },
+      "section-label": {
+        "value": {
+          "fontFamily": "Brasilero",
+          "fontWeight": "Regular",
+          "fontSize": "22",
+          "lineHeight": "1.2",
+          "letterSpacing": "18%",
+          "textCase": "uppercase"
+        },
+        "type": "typography",
+        "description": "Títulos de seção"
+      },
+      "pull-quote": {
+        "value": {
+          "fontFamily": "Brasilero",
+          "fontWeight": "Regular",
+          "fontSize": "28",
+          "lineHeight": "1.6",
+          "letterSpacing": "0%",
+          "textCase": "none"
+        },
+        "type": "typography",
+        "description": "Pull quotes no manifesto. clamp(1.3rem, 3vw, 1.75rem)"
+      },
+      "card-heading": {
+        "value": {
+          "fontFamily": "Brasilero",
+          "fontWeight": "Regular",
+          "fontSize": "17",
+          "lineHeight": "1.4",
+          "letterSpacing": "0%",
+          "textCase": "none"
+        },
+        "type": "typography",
+        "description": "Headings dos cards de movimento"
+      },
+      "entrada-nome": {
+        "value": {
+          "fontFamily": "Brasilero",
+          "fontWeight": "Regular",
+          "fontSize": "19",
+          "lineHeight": "1.4",
+          "letterSpacing": "0%",
+          "textCase": "none"
+        },
+        "type": "typography",
+        "description": "Nome das entradas no grid"
+      },
+      "footer-invite": {
+        "value": {
+          "fontFamily": "Brasilero",
+          "fontWeight": "Regular",
+          "fontSize": "18",
+          "lineHeight": "1.4",
+          "letterSpacing": "5%",
+          "textCase": "none"
+        },
+        "type": "typography",
+        "description": "quem quiser vir, que venha."
+      },
+      "btn-submit": {
+        "value": {
+          "fontFamily": "Brasilero",
+          "fontWeight": "Regular",
+          "fontSize": "14",
+          "lineHeight": "1",
+          "letterSpacing": "20%",
+          "textCase": "none"
+        },
+        "type": "typography",
+        "description": "Botão de submit do formulário"
+      },
+      "body": {
+        "value": {
+          "fontFamily": "Profane",
+          "fontWeight": "Regular",
+          "fontSize": "18",
+          "lineHeight": "2",
+          "letterSpacing": "0%",
+          "textCase": "none"
+        },
+        "type": "typography",
+        "description": "Corpo do manifesto. clamp(1rem, 2vw, 1.15rem)"
+      },
+      "hero-eyebrow": {
+        "value": {
+          "fontFamily": "Profane",
+          "fontWeight": "Regular",
+          "fontSize": "12",
+          "lineHeight": "1.4",
+          "letterSpacing": "35%",
+          "textCase": "uppercase"
+        },
+        "type": "typography",
+        "description": "Eyebrow acima do título do hero"
+      },
+      "hero-tagline": {
+        "value": {
+          "fontFamily": "Profane",
+          "fontWeight": "Regular",
+          "fontSize": "20",
+          "lineHeight": "1.8",
+          "letterSpacing": "0%",
+          "textCase": "none"
+        },
+        "type": "typography",
+        "description": "Tagline do hero. clamp(1rem, 2.5vw, 1.25rem)"
+      },
+      "nav-link": {
+        "value": {
+          "fontFamily": "Profane",
+          "fontWeight": "Regular",
+          "fontSize": "14",
+          "lineHeight": "1",
+          "letterSpacing": "20%",
+          "textCase": "uppercase"
+        },
+        "type": "typography",
+        "description": "Links de navegação"
+      },
+      "card-body": {
+        "value": {
+          "fontFamily": "Profane",
+          "fontWeight": "Regular",
+          "fontSize": "15",
+          "lineHeight": "1.85",
+          "letterSpacing": "0%",
+          "textCase": "none"
+        },
+        "type": "typography",
+        "description": "Corpo dos cards de movimento"
+      },
+      "entrada-desc": {
+        "value": {
+          "fontFamily": "Profane",
+          "fontWeight": "Regular",
+          "fontSize": "14",
+          "lineHeight": "1.75",
+          "letterSpacing": "0%",
+          "textCase": "none"
+        },
+        "type": "typography",
+        "description": "Descrição dos cards de entrada"
+      },
+      "entrada-num": {
+        "value": {
+          "fontFamily": "Profane",
+          "fontWeight": "Regular",
+          "fontSize": "10",
+          "lineHeight": "1",
+          "letterSpacing": "25%",
+          "textCase": "uppercase"
+        },
+        "type": "typography",
+        "description": "Numeração 01–05 das entradas"
+      },
+      "entrada-arrow": {
+        "value": {
+          "fontFamily": "Profane",
+          "fontWeight": "Regular",
+          "fontSize": "11",
+          "lineHeight": "1",
+          "letterSpacing": "20%",
+          "textCase": "uppercase"
+        },
+        "type": "typography",
+        "description": "Seta animada no hover das entradas"
+      },
+      "footer-sub": {
+        "value": {
+          "fontFamily": "Profane",
+          "fontWeight": "Regular",
+          "fontSize": "13",
+          "lineHeight": "1.4",
+          "letterSpacing": "20%",
+          "textCase": "uppercase"
+        },
+        "type": "typography",
+        "description": "insula perdita · clima no corpo · porto seguro"
+      },
+      "scroll-hint": {
+        "value": {
+          "fontFamily": "Profane",
+          "fontWeight": "Regular",
+          "fontSize": "10",
+          "lineHeight": "1",
+          "letterSpacing": "25%",
+          "textCase": "uppercase"
+        },
+        "type": "typography",
+        "description": "↓ descer ↓"
+      }
+    },
+    "borderRadius": {
+      "none": {
+        "value": "0",
+        "type": "borderRadius",
+        "description": "Gothicus não usa border-radius — tudo é angular"
+      }
+    },
+    "opacity": {
+      "leaf-color": {
+        "value": "0.13",
+        "type": "opacity",
+        "description": "Opacidade das folhas coloridas no canopy"
+      },
+      "leaf-yellow": {
+        "value": "0.22",
+        "type": "opacity",
+        "description": "Opacidade das folhas amarelas (menores)"
+      },
+      "nav-bg-scroll": {
+        "value": "0.95",
+        "type": "opacity",
+        "description": "Opacidade do fundo do nav após scroll"
+      }
+    }
+  },
+  "$metadata": {
+    "tokenSetOrder": ["global"]
+  }
+}
